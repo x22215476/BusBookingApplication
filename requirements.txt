@@ -1,0 +1,6 @@
+Django==5.0.2
+Pillow
+cryptography
+more_itertools==10.2.0
+psycopg2-binary
+requests
