@@ -3,19 +3,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.12
+      python: 3.9
     commands:
       - pip3 install --upgrade pip
-      - pip3 install -r requirements.txt pylint
+      - pip3 install -r requirements.txt
 
   pre_build:
     commands:
       - python3 --version
-#      - pylint --disable=no-member --errors-only $CODEBUILD_SRC_DIR/reservationApp/views.py
-      # - pylint_output=$(pylint --disable=django-model $CODEBUILD_SRC_DIR/listings/views.py)
-      # - score_line=$(echo "$pylint_output" | grep "Your code has been rated at")
-      # - score=$(echo "$score_line" | awk '{print $6}')
-      # - echo "Pylint Score: $score/10"
 
 artifacts:
   files:
