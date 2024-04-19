@@ -4,103 +4,59 @@
 {% block pageContent %}
 <style>
     body {
-        background: linear-gradient(135deg, #209cff 10%, #68e0cf 100%); 
+        background-image: url("{{ MEDIA_URL }}/default/image.png");
+        background-size: cover; /* Cover the entire background */
+        background-position: center; /* Center the background image */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
     }
 
     .welcome-text-container {
-        max-width: 100%;
-        padding: 50px;
-        text-align: left;
+        text-align: center;
+        margin-top: 10vh; /* Adjust margin to position the heading at the top */
     }
 
     .welcome-heading {
-        font-size: 7.5rem;
+        font-size: 4rem;
         margin-bottom: 20px;
-        margin-left: -130px;
     }
 
-    .small-text {
-        font-size: 3.2rem;
-        margin-top: 20px;
-        margin-left: -120px;
+    .bus-animation {
+        width: 60px;
+        height: auto;
+        animation: moveBus 5s linear infinite;
     }
 
-     @keyframes moveBus {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .bus-animation {
-            position: fixed;
-            width: 100px; 
-            height: 150px; 
-            background-image: url('path/to/bus-image.png'); 
-            background-size: cover;
-            animation: moveBus 5s linear infinite; 
-            margin-top: 150px;
-        }
-
-        .row {
-            position: relative;
-        }
+    @keyframes moveBus {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
 </style>
 <section class="container mt-5">
     {% if user.id %}
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="card rounded-0 shadow border-warning text-start summary-card my-3">
-                <div class="card-body">
-                    <div class="d-flex w-100">
-                        <div class="col-8 pe-2">
-                            <div class="summary-title fs-5 border-bottom">Total trips</div>
-                            <div class="summary-count text-end fw-bolder mt-3 px-4">{{ buses|intcomma }}</div>
-                        </div>
-                        <div class="col-4">
-                            <div class="summary-icon p-3 rounded border text-center bg-gradient bg-light">
-                                <i class="fa fa-bus fs-2"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Total Buses Card -->
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="card rounded-0 shadow border-success text-start summary-card my-3">
-                <div class="card-body">
-                    <div class="d-flex w-100">
-                        <div class="col-8 pe-2">
-                            <div class="summary-title fs-5 border-bottom">Upcoming Trips</div>
-                            <div class="summary-count text-end fw-bolder mt-3 px-4">{{ upcoming_trip|intcomma }}</div>
-                        </div>
-                        <div class="col-4">
-                            <div class="summary-icon p-3 rounded border text-center bg-gradient bg-light">
-                                <i class="fa fa-file-invoice fs-2"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Total Upcoming Trip Card -->
             </div>
         </div>
-        <div class="bus-animation">
-            <img src="{{ MEDIA_URL }}/default/bus-image.png" alt="" id="logo-img">
-        </div>
-       
-
+    </div>
+    <div class="bus-animation">
+        <img src="{{ MEDIA_URL }}/default/bus-image.png" alt="" id="logo-img">
     </div>
     {% else %}
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="welcome-text-container text-start text-white p-4">
-                <h1 class="welcome-heading fw-bold">Welcome to </h1>
-                <h3 class="welcome-heading fw-bold">GO BUS</h3>
-            </div>
-        </div>
-        
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="mb-4">
-                <img src="{{ MEDIA_URL }}/default/bus_image1.jpg" alt="" class="img-fluid rounded" id="logo-img" style="max-width: 108%; height: auto;">
-            </div>
-        </div>
+    <div class="welcome-text-container text-center text-black p-4">
+        <h1 class="welcome-heading fw-bold">GO BUS</h1>
+        <h3 class="welcome-subheading">"The Journey Is The Destination"</h3>
     </div>
     {% endif %}
 </section>
