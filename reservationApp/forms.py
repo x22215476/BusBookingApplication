@@ -49,7 +49,6 @@ class SaveLocation(forms.ModelForm):
     def clean_location(self):
         id = self.instance.id if self.instance.id else 0
         location = self.cleaned_data['location']
-        # print(int(id) > 0)
         try:
             if int(id) > 0:
                 loc = Location.objects.exclude(id=id).get(location = location)
@@ -71,7 +70,6 @@ class SaveBus(forms.ModelForm):
     def clean_bus_number(self):
         id = self.instance.id if self.instance.id else 0
         bus_number = self.cleaned_data['bus_number']
-        # print(int(id) > 0)
         try:
             if int(id) > 0:
                 bus = Bus.objects.exclude(id=id).get(bus_number = bus_number)
@@ -158,7 +156,6 @@ class SaveBooking(forms.ModelForm):
 
     def clean_schedule(self):
         schedule_id = self.cleaned_data['schedule']
-        # print(int(id) > 0)
         try:
             sched = Schedule.objects.get(id = schedule_id)
             return sched

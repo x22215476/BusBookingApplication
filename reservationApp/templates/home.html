@@ -5,8 +5,8 @@
 <style>
     body {
         background-image: url("{{ MEDIA_URL }}/default/image.png");
-        background-size: cover; /* Cover the entire background */
-        background-position: center; /* Center the background image */
+        background-size: cover; 
+        background-position: center; 
         margin: 0;
         padding: 0;
         display: flex;
@@ -17,7 +17,7 @@
 
     .welcome-text-container {
         text-align: center;
-        margin-top: 10vh; /* Adjust margin to position the heading at the top */
+        margin-top: 10vh; 
     }
 
     .welcome-heading {
@@ -27,16 +27,6 @@
     @keyframes moveBus {
         0% { left: -100%; }
         100% { left: 100%; }
-    }
-
-    .bus-animation {
-        position: fixed;
-        width: 100px; 
-        height: 150px; 
-        background-image: url('path/to/bus-image.png'); 
-        background-size: cover;
-        animation: moveBus 5s linear infinite; 
-        margin-top: 150px;
     }
     .row {
         position: relative;
@@ -81,9 +71,6 @@
             </div>
         </div>
 
-    <div class="bus-animation">
-        <img src="{{ MEDIA_URL }}/default/bus-image.png" alt="" id="logo-img">
-    </div>
     {% else %}
     <div class="welcome-text-container text-center text-black p-4">
         <h1 class="welcome-heading fw-bold">GO BUS</h1>

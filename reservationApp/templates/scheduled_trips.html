@@ -36,14 +36,6 @@
                         <dt class="col-auto fw-bold">Destination:</dt>
                         <dd class="col-auto flex-grow-1 flex-shrink-1">{{ data.destination.location }}</dd>
                     </dl>
-                    <!-- <dl class="row my-0">
-                        <dt class="col-auto fw-bold">GEOCODED DEPART:</dt>
-                        <dd class="col-auto flex-grow-1 flex-shrink-1" data-geocode="depart">{{ geocodedDepart }}</dd>
-                    </dl>
-                    <dl class="row my-0">
-                        <dt class="col-auto fw-bold">GEOCODED DESTINATION:</dt>
-                        <dd class="col-auto flex-grow-1 flex-shrink-1" data-geocode="destination">{{ geocodedDestination }}</dd>
-                    </dl> -->
                     <dl class="row my-0">
                         <dt class="col-auto fw-bold">Estimated Distance:</dt>
                         <dd class="col-auto flex-grow-1 flex-shrink-1" data-geocode="distance">{{ test }}</dd>
@@ -130,7 +122,6 @@
         function geocodeLocation(location) {
             return new Promise((resolve, reject) => {
                 var apiKey = 'AIzaSyDSAXdLBtjMxdc_O-SShjfrsD0DEnd2Gv4';
-                // var geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURIComponent(location) + '&key=' + apiKey;
                 var geocodeUrl = "http://evntz-node-api-ra-ie.ap-south-1.elasticbeanstalk.com/location/coordinates";
                 var postData = {
                     "to": "coordinates",
@@ -156,7 +147,6 @@
             .then(result => {
                 geocodedDepart = result;
                 console.log('Geocoded Depart:', geocodedDepart);
-                //store the value on geoCode-depart that can be rendered on html
                 $('[data-geocode="depart"]').text(JSON.stringify(geocodedDepart));
 
                 return geocodeLocation('{{ data.destination.location }}');
@@ -164,7 +154,6 @@
             .then(result => {
                 geocodedDestination = result;
                 console.log('Geocoded Destination:', geocodedDestination);
-                //store the value on geoCode-destination that can be rendered on html
                 $('[data-geocode="destination"]').text(JSON.stringify(geocodedDestination));
 
 
@@ -176,7 +165,6 @@
                 );
 
                 console.log('Distance:', distance.toFixed(2) + ' km');
-                // stpre on data-geocode="time"
 
                 $('[data-geocode="distance"]').text(distance.toFixed(2) + ' km');
 
@@ -188,9 +176,7 @@
                 const estimatedTimeMinutes = estimatedTimeHours * 60;
 
                 console.log('Estimated Time:', estimatedTimeMinutes.toFixed(2) + ' minutes');
-                // stpre on data-geocode="time"
-                //add hours and minutes both on estimated TotalTime
-                // get minutes up with 0 decimal places
+        
                 const estimatedTotalTime = Math.floor(estimatedTimeMinutes / 60) + ' hours ' + Math.floor(estimatedTimeMinutes.toFixed(2) % 60) + ' minutes';
 
                 $('[data-geocode="time"]').text(estimatedTotalTime);
