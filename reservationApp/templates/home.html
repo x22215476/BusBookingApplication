@@ -24,16 +24,23 @@
         font-size: 4rem;
         margin-bottom: 20px;
     }
-
-    .bus-animation {
-        width: 60px;
-        height: auto;
-        animation: moveBus 5s linear infinite;
+    @keyframes moveBus {
+        0% { left: -100%; }
+        100% { left: 100%; }
     }
 
-    @keyframes moveBus {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
+    .bus-animation {
+        position: fixed;
+        width: 100px; 
+        height: 150px; 
+        background-image: url('path/to/bus-image.png'); 
+        background-size: cover;
+        animation: moveBus 5s linear infinite; 
+        margin-top: 150px;
+    }
+    .row {
+        position: relative;
+   
     }
 </style>
 <section class="container mt-5">
@@ -41,15 +48,39 @@
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="card rounded-0 shadow border-warning text-start summary-card my-3">
-                <!-- Total Buses Card -->
+                <div class="card-body">
+                    <div class="d-flex w-100">
+                        <div class="col-8 pe-2">
+                            <div class="summary-title fs-5 border-bottom">Total trips</div>
+                            <div class="summary-count text-end fw-bolder mt-3 px-4">{{ buses|intcomma }}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="summary-icon p-3 rounded border text-center bg-gradient bg-light">
+                                <i class="fa fa-bus fs-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <div class="card rounded-0 shadow border-success text-start summary-card my-3">
-                <!-- Total Upcoming Trip Card -->
+                <div class="card-body">
+                    <div class="d-flex w-100">
+                        <div class="col-8 pe-2">
+                            <div class="summary-title fs-5 border-bottom">Upcoming Trips</div>
+                            <div class="summary-count text-end fw-bolder mt-3 px-4">{{ upcoming_trip|intcomma }}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="summary-icon p-3 rounded border text-center bg-gradient bg-light">
+                                <i class="fa fa-file-invoice fs-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+
     <div class="bus-animation">
         <img src="{{ MEDIA_URL }}/default/bus-image.png" alt="" id="logo-img">
     </div>
